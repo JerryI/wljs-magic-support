@@ -27,6 +27,7 @@ FileWriteProcessor[expr_String, signature_String, callback_] := Module[{filename
   filename = StringCases[expr, RegularExpression["^([a-zA-Z_0-9\\-]+)\\.([a-zA-Z_]+)"] ] //First;
   filecontent = StringDrop[StringReplace[expr, filename->""],1];
   path = FileNameJoin[{DirectoryName[JerryI`WolframJSFrontend`Notebook`Notebooks[signature]["path"]], filename}];
+  If[FileExistsQ[path], DeleteFile[path]];
   WriteString[path, filecontent];
   callback[
       StringTemplate["* `` characters were written *"][StringLength[filecontent]],
