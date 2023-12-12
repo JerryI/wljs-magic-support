@@ -2,7 +2,7 @@ BeginPackage["JerryI`WolframJSFrontend`MagicFileEditor`"];
 
 Begin["Private`"];
 
-ImageProcessor[expr_String, signature_String, callback_] := Module[{filename},
+ImageProcessor[expr_String, signature_String, parent_, callback_] := Module[{filename},
   Print["ImageProcessor!"];
   callback[
       expr,
@@ -12,7 +12,7 @@ ImageProcessor[expr_String, signature_String, callback_] := Module[{filename},
   ];
 ];
 
-FilePrintProcessor[expr_String, signature_String, callback_] := Module[{filename},
+FilePrintProcessor[expr_String, signature_String, parent_, callback_] := Module[{filename},
   Print["FilePProcessor!"]; 
   callback[
       Import[FileNameJoin[{DirectoryName[JerryI`WolframJSFrontend`Notebook`Notebooks[signature]["path"]], expr}], "String"],
@@ -22,7 +22,7 @@ FilePrintProcessor[expr_String, signature_String, callback_] := Module[{filename
   ];
 ];
 
-FileWriteProcessor[expr_String, signature_String, callback_] := Module[{filename, filecontent, path},
+FileWriteProcessor[expr_String, signature_String, parent_, callback_] := Module[{filename, filecontent, path},
   Print["FileWProcessor!"];
   filename = StringCases[expr, RegularExpression["^([a-zA-Z_0-9\\-]+)\\.([a-zA-Z_]+)"] ] //First;
   filecontent = StringDrop[StringReplace[expr, filename->""],1];
