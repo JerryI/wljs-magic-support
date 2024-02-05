@@ -9,7 +9,8 @@
   "defaultPackage": true,
   "wljs-meta": {
     "js": "dist/kernel.js",
-    "frontend": "src/Frontend.wl"
+    "frontend": "src/Frontend.wl",
+    "category": "Editor"
   },
   "repository": {
     "type": "git",
