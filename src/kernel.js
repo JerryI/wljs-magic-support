@@ -24,12 +24,17 @@ window.SupportedCells['image'] = {
   view: ImageCell
 };
 
+
+
 class FileOutputCell {
     dispose() {
       
     }
     
     constructor(parent, data) {
+      const {EditorView, EditorState, defaultHighlightStyle, syntaxHighlighting, editorCustomTheme} = window.SupportedCells['codemirror'].context;
+
+    
       const editor = new EditorView({
         doc: data,
         extensions: [
